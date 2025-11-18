@@ -1,0 +1,51 @@
+.place-order-container {
+    max-width: 600px;
+    margin: auto;
+    padding: 1rem;
+    background: #f9f9f9;
+    border-radius: 10px;
+  }
+  
+  .place-order-container h2,
+  .place-order-container h3 {
+    text-align: center;
+  }
+  
+  .form-section {
+    margin: 1rem 0;
+  }
+  
+  .form-section input,
+  .form-section select {
+    display: block;
+    width: 100%;
+    padding: 0.6rem;
+    margin: 0.4rem 0;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+  }
+  
+  .order-summary {
+    background: #fff;
+    padding: 1rem;
+    border: 1px solid #ccc;
+    margin-top: 1rem;
+    border-radius: 10px;
+  }
+  
+  .place-order-btn {
+    width: 100%;
+    padding: 0.7rem;
+    background: green;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    font-weight: bold;
+    cursor: pointer;
+    margin-top: 1rem;
+  }
+  
+  .place-order-btn:hover {
+    background-color: darkgreen;
+  }
+  

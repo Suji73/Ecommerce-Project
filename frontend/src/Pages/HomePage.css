@@ -1,0 +1,45 @@
+.home-container {
+  width: 100%;
+  text-align: center;
+  padding-top: 20px;
+}
+
+.hero-section {
+  background: url("https://replydam.discoveryreplymedia.com/production/3/3/e100dfc4-0fb6-6e96-bf1b-a17e655f9391/ca081da0-34f2-47cb-b4e5-015a276cb0aa.png?im=Crop,rect=(16,18,1888,1062),allowExpansion") center/cover no-repeat;
+  height: 350px;
+  border-radius: 12px;
+  padding: 70px 20px;
+  color: white;
+}
+
+.hero-section h1 {
+  font-size: 38px;
+  font-weight: 700;
+}
+
+.hero-section p {
+  font-size: 20px;
+  margin: 10px 0;
+}
+
+.hero-btn {
+  display: inline-block;
+  background: #0a8a44;
+  padding: 12px 28px;
+  font-size: 18px;
+  font-weight: bold;
+  color: white;
+  border-radius: 8px;
+  text-decoration: none;
+}
+
+.hero-btn:hover {
+  background: #067537;
+}
+
+/* Mobile */
+@media (max-width: 600px) {
+  .hero-section h1 {
+    font-size: 28px;
+  }
+}
