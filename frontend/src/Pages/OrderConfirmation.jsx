@@ -45,7 +45,7 @@ const OrderConfirmation = () => {
     <div style={containerStyle}>
       <h2 style={headingStyle}>Thank you for your order!</h2>
       <p style={paragraphStyle}> Your order has been placed successfully.</p>
-      <Link to="/home" style={linkStyle}>
+      <Link to="/" style={linkStyle}>
         Return to Home
       </Link>
     </div>

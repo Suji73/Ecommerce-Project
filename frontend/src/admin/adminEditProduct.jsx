@@ -18,7 +18,7 @@ const AdminEditProduct = () => {
   const [image, setImage] = useState(null);
   const [oldImage, setOldImage] = useState("");
 
-  const token = localStorage.getItem("authToken");
+  const token = localStorage.getItem("token");
 
   // Load existing product
   useEffect(() => {

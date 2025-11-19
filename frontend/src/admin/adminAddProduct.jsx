@@ -19,7 +19,7 @@ const AdminAddProduct = () => {
     Object.keys(form).forEach((key) => fd.append(key, form[key]));
     fd.append("image", image);
 
-    const token = localStorage.getItem("authToken");
+    const token = localStorage.getItem("token");
 
     await axios.post("http://localhost:5000/api/products", fd, {
       headers: { Authorization: `Bearer ${token}` },

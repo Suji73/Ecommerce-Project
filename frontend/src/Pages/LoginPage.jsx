@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { loginUser } from "../apis/userApi";
-import { useNavigate, Link } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import "./Form.css";
 
 const LoginPage = () => {
@@ -12,63 +12,57 @@ const LoginPage = () => {
   };
 
   const handleSubmit = async (e) => {
-  e.preventDefault();
-  try {
-    const res = await loginUser(formData);
+    e.preventDefault();
 
-    console.log("LOGIN RESPONSE:", res);  // ⭐ IMPORTANT
+    try {
+      const res = await loginUser(formData);
 
-    localStorage.setItem("authToken", res.token);
-    localStorage.setItem("user", JSON.stringify(res.user));
+      // Save TOKEN + USER in localStorage
+      localStorage.setItem("token", res.token);
+      localStorage.setItem("user", JSON.stringify(res.user));
 
-    if (res.user && res.user.isAdmin === true) {
-      navigate("/admin");
-    } else {
-      navigate("/home");
+      alert("Login Successful!");
+
+      // If admin → navigate to Admin Dashboard
+      if (res.user.isAdmin === true) {
+        navigate("/admin");
+      } else {
+        navigate("/");
+      }
+    } catch (err) {
+      alert("Invalid email or password!");
     }
-
-  } catch (err) {
-    console.log("LOGIN ERROR:", err);
-    alert("Login failed!");
-  }
-};
+  };
 
   return (
-    <div className="page-center">
-    <form onSubmit={handleSubmit} className="auth-wrapper" autoComplete="off">
-  <div className="auth-card">
-    <h2>Login</h2>
+    <form onSubmit={handleSubmit} className="form-container">
+      <h2>Login</h2>
 
-    <input
-      name="email"
-      type="email"
-      placeholder="Email"
-      value={formData.email}
-      onChange={handleChange}
-      autoComplete="off"
-      required
-    />
+      <input
+        name="email"
+        type="email"
+        placeholder="Email"
+        value={formData.email}
+        onChange={handleChange}
+        required
+      />
 
-    <input
-      name="password"
-      type="password"
-      placeholder="Password"
-      value={formData.password}
-      onChange={handleChange}
-      autoComplete="new-password"
-      required
-    />
+      <input
+        name="password"
+        type="password"
+        placeholder="Password"
+        value={formData.password}
+        onChange={handleChange}
+        required
+      />
 
-    <button type="submit" className="auth-btn">Login</button>
+      <button type="submit">Login</button>
 
-    <p className="auth-switch">
-      Don't have an account? <Link to="/register">Register</Link>
-    </p>
-  </div>
-</form>
-</div>
+      <p className="toggle-text">
+        Don't have an account? <a href="/register">Register</a>
+      </p>
+    </form>
   );
 };
-
 
 export default LoginPage;

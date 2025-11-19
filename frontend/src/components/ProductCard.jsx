@@ -1,55 +1,40 @@
-import React, { useEffect, useState } from "react";
-import axios from "axios";
+import React from "react";
 import { Link } from "react-router-dom";
 import { useCart } from "../context/CartContext";
 import "./ProductCard.css";
 
-const ProductList = () => {
-  const [products, setProducts] = useState([]);
+const ProductCard = ({ product, onEdit, onDelete }) => {
   const { addToCart } = useCart();
 
-  useEffect(() => {
-    const fetchProducts = async () => {
-      try {
-        const { data } = await axios.get("http://localhost:5000/api/products");
-        setProducts(data);
-      } catch (error) {
-        console.error("Error fetching products:", error);
-      }
-    };
-    fetchProducts();
-  }, []);
-
-  if (products.length === 0) return <p>Loading products...</p>;
-
   return (
-    <div className="product-list">
-      {products.map((product) => (
-        <div key={product._id} className="product-card">
-          <Link to={`/product/${product._id}`}>
-            <div className="img-wrap">
-              <img
-                src={`http://localhost:5000/uploads/${product.image}`}
-                alt={product.name}
-                loading="lazy"
-              />
-            </div>
-            <h3>{product.name}</h3>
-          </Link>
+    <div className="card">
+      <img
+        src={`http://localhost:5000/uploads/${product.image}`}
+        alt={product.name}
+        className="card-img"
+      />
 
-          <p className="price">₹{product.price}</p>
+      <h3>{product.name}</h3>
+      <p className="price">₹{product.price}</p>
+      <p className="description">{product.description}</p>
 
-          <button className="add-btn" onClick={() => addToCart(product)}>
-            Add to Cart
-          </button>
+      <div className="button-group">
+        <button className="add-btn" onClick={() => addToCart(product)}>
+          Add to Cart
+        </button>
 
-          <button className="buy-btn" onClick={() => addToCart(product)}>
-            Buy Now
-          </button>
-        </div>
-      ))}
+        <Link to={`/product/${product._id}`} className="link-btn">View</Link>
+
+        <button className="edit-btn" onClick={() => onEdit(product._id)}>
+          Edit
+        </button>
+
+        <button className="delete-btn" onClick={() => onDelete(product._id)}>
+          Delete
+        </button>
+      </div>
     </div>
   );
 };
 
-export default ProductList;
+export default ProductCard;

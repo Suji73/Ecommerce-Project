@@ -1,45 +1,28 @@
-.home-container {
-  width: 100%;
-  text-align: center;
-  padding-top: 20px;
+.home-container { width: 100%; padding: 20px; }
+
+.hero {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: #e9f7ef;
+  border-radius: 20px;
+  padding: 40px;
+  margin-bottom: 40px;
 }
 
-.hero-section {
-  background: url("https://replydam.discoveryreplymedia.com/production/3/3/e100dfc4-0fb6-6e96-bf1b-a17e655f9391/ca081da0-34f2-47cb-b4e5-015a276cb0aa.png?im=Crop,rect=(16,18,1888,1062),allowExpansion") center/cover no-repeat;
-  height: 350px;
-  border-radius: 12px;
-  padding: 70px 20px;
-  color: white;
-}
+.hero-text h1 { font-size: 42px; font-weight: 700; color: #0a8a44; }
+.hero-text p { font-size: 18px; margin-top: 10px; color: #333; }
+.shop-btn { margin-top: 20px; background: #0a8a44; color: white; padding: 12px 25px; border-radius: 8px; border: none; cursor: pointer; font-size: 18px; }
+.hero-img img { width: 350px; border-radius: 20px; }
 
-.hero-section h1 {
-  font-size: 38px;
-  font-weight: 700;
-}
+.categories { text-align: center; margin-bottom: 40px; }
+.category-grid { margin-top: 20px; display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 15px; }
+.category-card { background: #0a8a44; color: white; padding: 20px; border-radius: 12px; font-size: 16px; font-weight: 600; cursor: pointer; }
 
-.hero-section p {
-  font-size: 20px;
-  margin: 10px 0;
-}
+.featured { text-align: center; margin-bottom: 50px; }
+.view-btn { background: #ff8c00; padding: 12px 25px; border-radius: 8px; border: none; color: white; cursor: pointer; font-size: 18px; }
 
-.hero-btn {
-  display: inline-block;
-  background: #0a8a44;
-  padding: 12px 28px;
-  font-size: 18px;
-  font-weight: bold;
-  color: white;
-  border-radius: 8px;
-  text-decoration: none;
-}
-
-.hero-btn:hover {
-  background: #067537;
-}
-
-/* Mobile */
-@media (max-width: 600px) {
-  .hero-section h1 {
-    font-size: 28px;
-  }
+@media (max-width: 768px) {
+  .hero { flex-direction: column; text-align: center; }
+  .hero-img img { width: 80%; margin-top: 20px; }
 }

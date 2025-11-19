@@ -1,128 +1,51 @@
-import React from "react";
-import { Routes, Route } from "react-router-dom";
-import Navbar from "./components/Navbar";
-import HomePage from "./Pages/HomePage";
-import ProductDetail from "./Pages/ProductDetail";
-import Cart from "./components/Cart";
-import LoginPage from "./Pages/LoginPage";
-import RegisterPage from "./Pages/RegisterPage";
+import React from 'react';
+import { Routes, Route } from 'react-router-dom';
+import Navbar from './components/Navbar';
+import HomePage from './Pages/HomePage';
+import ProductDetail from './Pages/ProductDetail';
+import Cart from './components/Cart';
+import LoginPage from './Pages/LoginPage';
+import RegisterPage from './Pages/RegisterPage';
 import PlaceOrder from "./Pages/PlaceOrder";
 import EditProduct from "./Pages/EditProduct";
-import ProductList from "./components/ProductList";
+import ProductList from './components/ProductList';
 import AddProduct from "./Pages/AddProduct";
-import Footer from "./components/Footer";
-import OrderConfirmation from "./Pages/OrderConfirmation";
+import Footer from './components/Footer';
+import OrderConfirmation from './Pages/OrderConfirmation';
 import OrderHistory from "./Pages/OrderHistory";
+import { CartProvider } from './context/CartContext';
 
-import { CartProvider } from "./context/CartContext";
 import "./app.css";
 
-// Admin Imports
-import AdminAddProduct from "./admin/adminAddProduct";
-import AdminDashboard from "./admin/adminDashboard";
-import AdminEditProduct from "./admin/adminEditProduct";
-import AdminProducts from "./admin/adminProducts";
-import AdminRoute from "./components/adminRoute";
-
-// User Protected Route
-import ProtectedRoute from "./components/ProtectedRoute";
+// ADMIN
+import AdminAddProduct from './admin/adminAddProduct';
+import AdminEditProduct from './admin/adminEditProduct';
+import AdminProducts from './admin/adminProducts';
+import AdminDashboard from './admin/adminDashboard';
+import AdminRoute from './components/adminRoute';
 
 function App() {
   return (
     <CartProvider>
-      <div className="app-container">
+      <div className='app-container'>
         <Navbar />
 
-        <main className="main-content">
+        <main className='main-content'>
           <Routes>
-            {/* ---------- AUTH FIRST ---------- */}
-            <Route path="/" element={<LoginPage />} />
+            {/* USER ROUTES */}
+            <Route path="/" element={<HomePage />} />
+            <Route path="/product/:id" element={<ProductDetail />} />
+            <Route path="/products" element={<ProductList />} />
+            <Route path="/cart" element={<Cart />} />
+
             <Route path="/login" element={<LoginPage />} />
             <Route path="/register" element={<RegisterPage />} />
 
-            {/* ---------- PROTECTED USER ROUTES ---------- */}
-            <Route
-              path="/home"
-              element={
-                <ProtectedRoute>
-                  <HomePage />
-                </ProtectedRoute>
-              }
-            />
+            <Route path="/place-order" element={<PlaceOrder />} />
+            <Route path="/order-confirmation" element={<OrderConfirmation />} />
+            <Route path="/order-history" element={<OrderHistory />} />
 
-            <Route
-              path="/product/:id"
-              element={
-                <ProtectedRoute>
-                  <ProductDetail />
-                </ProtectedRoute>
-              }
-            />
-
-            <Route
-              path="/cart"
-              element={
-                <ProtectedRoute>
-                  <Cart />
-                </ProtectedRoute>
-              }
-            />
-
-            <Route
-              path="/products"
-              element={
-                <ProtectedRoute>
-                  <ProductList />
-                </ProtectedRoute>
-              }
-            />
-
-            <Route
-              path="/add-product"
-              element={
-                <ProtectedRoute>
-                  <AddProduct />
-                </ProtectedRoute>
-              }
-            />
-
-            <Route
-              path="/edit-product/:id"
-              element={
-                <ProtectedRoute>
-                  <EditProduct />
-                </ProtectedRoute>
-              }
-            />
-
-            <Route
-              path="/place-order"
-              element={
-                <ProtectedRoute>
-                  <PlaceOrder />
-                </ProtectedRoute>
-              }
-            />
-
-            <Route
-              path="/order-confirmation"
-              element={
-                <ProtectedRoute>
-                  <OrderConfirmation />
-                </ProtectedRoute>
-              }
-            />
-
-            <Route
-              path="/order-history"
-              element={
-                <ProtectedRoute>
-                  <OrderHistory />
-                </ProtectedRoute>
-              }
-            />
-
-            {/* ---------- ADMIN ROUTES ---------- */}
+            {/* ADMIN ROUTES */}
             <Route
               path="/admin"
               element={
@@ -158,6 +81,7 @@ function App() {
                 </AdminRoute>
               }
             />
+
           </Routes>
         </main>
 

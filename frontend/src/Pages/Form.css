@@ -1,74 +1,41 @@
-/* Wrapper makes the form center vertically + horizontally */
-.auth-wrapper {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  min-height: 80vh;
-  padding: 20px;
-}
-
-/* White Card box */
-.auth-card {
-  background: white;
-  width: 100%;
-  max-width: 380px;
-  padding: 2rem;
-  border-radius: 12px;
-  box-shadow: 0 4px 20px rgba(0,0,0,0.1);
-  text-align: center;
-}
-
-/* Inputs */
-.auth-card input {
-  width: 100%;
-  padding: 12px;
-  margin: 12px 0px;
-  border: 1px solid #ccc;
-  border-radius: 8px;
-  font-size: 16px;
+.form-container {
+    max-width: 400px;
+    margin: 3rem auto;
+    padding: 2rem;
+    border-radius: 8px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    background-color: #ffffff;
+  }
   
-}
-
-/* Button */
-.auth-btn {
-  width: 100%;
-  padding: 12px;
-  background: #0a8a44;
-  color: white;
-  font-size: 18px;
-  font-weight: 600;
-  border: none;
-  border-radius: 8px;
-  cursor: pointer;
-}
-
-.auth-btn:hover {
-  background: #067537;
-}
-
-/* Switch link */
-.auth-switch {
-  margin-top: 10px;
-  font-size: 15px;
-}
-
-.auth-switch a {
-  color: #0a8a44;
-  font-weight: 600;
-}
-
-/* Responsive (Small Screens) */
-@media (max-width: 480px) {
-  .auth-card {
-    padding: 1.5rem;
-    max-width: 95%;
+  .form-container h2 {
+    text-align: center;
+    margin-bottom: 1.5rem;
+    color: #4CAF50;
   }
-
-  .auth-card input {
-    font-size: 14px;
+  
+  .form-container input,
+  .form-container textarea,
+  .form-container select {
+    width: 100%;
+    padding: 0.75rem;
+    margin-bottom: 1rem;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    font-size: 1rem;
   }
-
-  .auth-btn {
-    font-size: 16px;
+  
+  .form-container button {
+    width: 100%;
+    padding: 0.75rem;
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    font-size: 1rem;
+    border-radius: 6px;
+    cursor: pointer;
   }
-}
+  
+  .form-container button:hover {
+    background-color: #45a049;
+  }
+  

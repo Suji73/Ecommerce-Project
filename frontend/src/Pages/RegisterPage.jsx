@@ -1,15 +1,10 @@
 import React, { useState } from "react";
 import { registerUser } from "../apis/userApi";
-import { useNavigate, Link } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import "./Form.css";
 
 const RegisterPage = () => {
-  const [formData, setFormData] = useState({
-    name: "",
-    email: "",
-    password: ""
-  });
-
+  const [formData, setFormData] = useState({ name: "", email: "", password: "" });
   const navigate = useNavigate();
 
   const handleChange = (e) => {
@@ -19,56 +14,47 @@ const RegisterPage = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      await registerUser(formData);
+      const res = await registerUser(formData);
+      console.log("Registration Response:", res); 
       alert("Registration successful!");
-      navigate("/");
+      navigate("/login");
     } catch (err) {
+      console.error("Registration Error:", err.response?.data || err.message); 
       alert("Registration failed!");
     }
   };
+  
 
   return (
-    <div className="page-center">
-    <form onSubmit={handleSubmit} className="auth-wrapper" autoComplete="off">
-  <div className="auth-card">
-    <h2>Register</h2>
-
-    <input
-      name="name"
-      placeholder="Name"
-      value={formData.name}
-      onChange={handleChange}
-      required
-    />
-
-    <input
-      name="email"
-      type="email"
-      placeholder="Email"
-      value={formData.email}
-      onChange={handleChange}
-      autoComplete="off"
-      required
-    />
-
-    <input
-      name="password"
-      type="password"
-      placeholder="Password"
-      value={formData.password}
-      onChange={handleChange}
-      autoComplete="new-password"
-      required
-    />
-
-    <button type="submit" className="auth-btn">Register</button>
-
-    <p className="auth-switch">
-      Already have an account? <Link to="/login">Login</Link>
-    </p>
-  </div>
-</form>
-</div>
+    <form onSubmit={handleSubmit} style={{ padding: "1rem" }}>
+      <div className="form-container">
+      <h2>Register</h2>
+      <input
+        name="name"
+        placeholder="Name"
+        value={formData.name}
+        onChange={handleChange}
+        required
+      /><br />
+      <input
+        name="email"
+        type="email"
+        placeholder="Email"
+        value={formData.email}
+        onChange={handleChange}
+        required
+      /><br />
+      <input
+        name="password"
+        type="password"
+        placeholder="Password"
+        value={formData.password}
+        onChange={handleChange}
+        required
+      /><br />
+      <button type="submit">Register</button>
+      </div>
+    </form>
   );
 };
 

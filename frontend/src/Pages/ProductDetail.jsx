@@ -6,10 +6,10 @@ import "./ProductDetail.css";
 
 const ProductDetail = () => {
   const { id } = useParams();
-  const navigate = useNavigate();
-  const { addToCart } = useCart();
-
   const [product, setProduct] = useState(null);
+
+  const { addToCart } = useCart();
+  const navigate = useNavigate();
 
   useEffect(() => {
     const fetchProduct = async () => {
@@ -26,40 +26,32 @@ const ProductDetail = () => {
 
   if (!product) return <p>Loading...</p>;
 
-  // ---------------- BUY NOW -----------------
-  const handleBuyNow = () => {
-    const buyNowItem = {
-      name: product.name,
-      qty: 1,
-      image: product.image,
-      price: product.price,
-      product: product._id,
-    };
-
-    navigate("/place-order", { state: { buyNowItem } });
-  };
-
   return (
     <div className="product-detail-container">
       <h2>{product.name}</h2>
 
       <img
+        className="detail-image"
         src={`http://localhost:5000/uploads/${product.image}`}
         alt={product.name}
-        className="product-detail-img"
       />
 
-      <p className="price">Price: ₹{product.price}</p>
-      <p>Description: {product.description}</p>
-      <p>Category: {product.category}</p>
+      <p className="detail-price">Price: ₹{product.price}</p>
+      <p className="detail-description">{product.description}</p>
+      <p className="detail-category">Category: {product.category}</p>
 
-      {/* Buttons */}
-      <div className="product-buttons">
-        <button className="add-cart-btn" onClick={() => addToCart(product)}>
+      <div className="detail-buttons">
+        <button className="add-btn" onClick={() => addToCart(product)}>
           Add to Cart
         </button>
 
-        <button className="buy-now-btn" onClick={handleBuyNow}>
+        <button
+          className="buy-btn"
+          onClick={() => {
+            addToCart(product);
+            navigate("/place-order");
+          }}
+        >
           Buy Now
         </button>
       </div>

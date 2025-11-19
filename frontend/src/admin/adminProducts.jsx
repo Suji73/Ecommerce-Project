@@ -14,7 +14,7 @@ const AdminProducts = () => {
   const deleteProduct = async (id) => {
     if (!window.confirm("Delete this product?")) return;
 
-    const token = localStorage.getItem("authToken");
+    const token = localStorage.getItem("token");
 
     await axios.delete(`http://localhost:5000/api/products/${id}`, {
       headers: { Authorization: `Bearer ${token}` }
