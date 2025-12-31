@@ -6,19 +6,10 @@ export default defineConfig({
   plugins: [react()],
   build: {
     outDir: 'dist',
-    assetsDir: 'assets',
     sourcemap: false,
-    commonjsOptions: {
-      include: [/node_modules/],
-    },
   },
   server: {
     host: true,
     port: 3000,
-  },
-  resolve: {
-    alias: {
-      'react/jsx-runtime': 'react/jsx-runtime',
-    },
   },
 })
