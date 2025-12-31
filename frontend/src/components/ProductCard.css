@@ -72,7 +72,13 @@
 }
 
 .card-buttons .buy {
-  background: #ff6600;
+  background: white;
+  color: black;
+  border: 2px solid #00a859;
+}
+.card-buttons .buy :hover {
+  background-color: #00a859;
+  color: white;
 }
 
 .card-buttons button:hover {

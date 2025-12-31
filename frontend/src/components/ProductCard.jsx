@@ -1,6 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import { useCart } from "../context/CartContext";
+import { getImageUrl } from "../utils/imageUtils";
 import "./ProductCard.css";
 
 const ProductCard = ({ product, onEdit, onDelete }) => {
@@ -9,9 +10,12 @@ const ProductCard = ({ product, onEdit, onDelete }) => {
   return (
     <div className="card">
       <img
-        src={`http://localhost:5000/uploads/${product.image}`}
+        src={getImageUrl(product.image)}
         alt={product.name}
         className="card-img"
+        onError={(e) => {
+          e.target.src = '/placeholder.svg';
+        }}
       />
 
       <h3>{product.name}</h3>

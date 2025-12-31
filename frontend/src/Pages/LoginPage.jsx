@@ -21,7 +21,7 @@ const LoginPage = () => {
       localStorage.setItem("token", res.token);
       localStorage.setItem("user", JSON.stringify(res.user));
 
-      alert("Login Successful!");
+    
 
       // If admin → navigate to Admin Dashboard
       if (res.user.isAdmin === true) {

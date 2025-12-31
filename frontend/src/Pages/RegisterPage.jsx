@@ -16,7 +16,7 @@ const RegisterPage = () => {
     try {
       const res = await registerUser(formData);
       console.log("Registration Response:", res); 
-      alert("Registration successful!");
+      
       navigate("/login");
     } catch (err) {
       console.error("Registration Error:", err.response?.data || err.message); 
@@ -53,6 +53,10 @@ const RegisterPage = () => {
         required
       /><br />
       <button type="submit">Register</button>
+
+      <p className="toggle-text">
+        Already have an account? <a href="/login">Login</a>
+      </p>
       </div>
     </form>
   );

@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
-import "./orderhistory.css"; // style this how you want
+import "./OrderHistory.css"; // style this how you want
 
 const OrderHistory = () => {
   const [orders, setOrders] = useState([]);

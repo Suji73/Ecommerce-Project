@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { useCart } from "../context/CartContext";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
-import "./placeorder.css";
+import "./Placeorder.css";
 
 const PlaceOrder = () => {
   const { cartItems, clearCart } = useCart();
@@ -27,6 +27,25 @@ const PlaceOrder = () => {
   };
 
   const handlePlaceOrder = async () => {
+    // Validation
+    const token = localStorage.getItem("token");
+    if (!token) {
+      alert("Please login to place an order");
+      navigate("/login");
+      return;
+    }
+
+    if (cartItems.length === 0) {
+      alert("Your cart is empty");
+      navigate("/");
+      return;
+    }
+
+    if (!shipping.address || !shipping.city || !shipping.postalCode || !shipping.country) {
+      alert("Please fill in all shipping address fields");
+      return;
+    }
+
     const orderItems = cartItems.map((item) => ({
       name: item.name,
       qty: item.qty,
@@ -43,8 +62,6 @@ const PlaceOrder = () => {
     };
 
     try {
-      const token = localStorage.getItem("token");
-
       const res = await axios.post("http://localhost:5000/api/orders", orderData, {
         headers: {
           Authorization: `Bearer ${token}`,
@@ -52,13 +69,12 @@ const PlaceOrder = () => {
       });
 
       if (res.status === 201) {
-        alert("Order placed successfully!");
         clearCart();
         navigate("/order-confirmation");
       }
     } catch (err) {
       console.error("Order failed", err.response?.data || err.message);
-      alert("Order placement failed!");
+      alert(err.response?.data?.message || "Order placement failed!");
     }
   };
 

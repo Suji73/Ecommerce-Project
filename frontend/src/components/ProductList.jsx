@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import axios from "axios";
 import { Link, useNavigate, useLocation } from "react-router-dom";
 import { useCart } from "../context/CartContext";
+import { getImageUrl } from "../utils/imageUtils";
 import "./ProductCard.css";
 
 const ProductList = () => {
@@ -56,8 +57,11 @@ setProducts(filtered);
             onClick={() => navigate(`/product/${product._id}`)}
           >
             <img
-              src={`http://localhost:5000/uploads/${product.image}`}
+              src={getImageUrl(product.image)}
               alt={product.name}
+              onError={(e) => {
+                e.target.src = '/placeholder.svg';
+              }}
             />
           </div>
 

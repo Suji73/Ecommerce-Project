@@ -8,9 +8,11 @@
   border-radius: 20px;
   padding: 40px;
   margin-bottom: 40px;
+  border: 2px solid #0a8a44;
 }
 
-.hero-text h1 { font-size: 42px; font-weight: 700; color: #0a8a44; }
+.hero-text h1 { 
+  font-size: 42px; font-weight: 700; color: #0a8a44; }
 .hero-text p { font-size: 18px; margin-top: 10px; color: #333; }
 .shop-btn { margin-top: 20px; background: #0a8a44; color: white; padding: 12px 25px; border-radius: 8px; border: none; cursor: pointer; font-size: 18px; }
 .hero-img img { width: 350px; border-radius: 20px; }

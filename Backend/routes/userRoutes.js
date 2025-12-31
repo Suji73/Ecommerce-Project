@@ -6,7 +6,7 @@ const jwt = require("jsonwebtoken");
 const router = express.Router();
 
 const generateToken = (userId) => {
-  return jwt.sign({ userId }, "your_jwt_secret", { expiresIn: "30d" });
+  return jwt.sign({ userId }, process.env.JWT_SECRET || "My_Secret_Key", { expiresIn: "30d" });
 };
 
 // REGISTER
@@ -60,6 +60,36 @@ router.post("/login", async (req, res) => {
 
   } catch (err) {
     res.status(500).json({ message: err.message });
+  }
+});
+
+// REFRESH TOKEN
+router.post("/refresh", async (req, res) => {
+  try {
+    const { token } = req.body;
+    
+    if (!token) {
+      return res.status(400).json({ message: "Token is required" });
+    }
+
+    // Try to verify with current secret first, then old secret
+    let decoded;
+    try {
+      decoded = jwt.verify(token, process.env.JWT_SECRET || "My_Secret_Key", { ignoreExpiration: true });
+    } catch (err) {
+      try {
+        decoded = jwt.verify(token, "your_jwt_secret", { ignoreExpiration: true });
+      } catch (oldErr) {
+        return res.status(401).json({ message: "Invalid token" });
+      }
+    }
+    
+    // Generate a new token with the current secret
+    const newToken = generateToken(decoded.userId);
+    
+    res.json({ token: newToken });
+  } catch (err) {
+    res.status(401).json({ message: "Invalid token" });
   }
 });
 

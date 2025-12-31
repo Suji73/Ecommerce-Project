@@ -1,6 +1,7 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
 import { useCart } from "../context/CartContext";
+import { getImageUrl } from "../utils/imageUtils";
 import "./Cart.css";
 
 const Cart = () => {
@@ -29,7 +30,15 @@ const Cart = () => {
       <ul className="cart-items">
         {cartItems.map((item) => (
           <li className="cart-item" key={item._id}>
-            <img src={item.image} alt={item.name} className="cart-item-img" />
+            <img 
+              src={getImageUrl(item.image)} 
+              alt={item.name} 
+              className="cart-item-img" 
+              onError={(e) => {
+                console.log('Image failed to load:', item.image);
+                e.target.src = '/placeholder.svg';
+              }}
+            />
             <div className="cart-item-info">
               <h3>{item.name}</h3>
               <p>Price: ₹{item.price}</p>
